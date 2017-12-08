@@ -5,7 +5,35 @@
 #include <set>
 #include <map>
 #include <algorithm>
+#include <unordered_map>
 using namespace std;
+
+bool ransom_note(vector<string> magazine, vector<string> ransom) {
+    unordered_map<string, int> m;
+
+    for (int i = 0; i < magazine.size(); i++) {
+        auto it = m.find(magazine[i]);
+         if (it == m.end()) {
+            m.insert({magazine[i],1});
+         } else {
+            it->second++;
+         }
+    }
+
+    for (int i = 0; i < ransom.size(); i++) {
+         auto it = m.find(ransom[i]);
+         if (it != m.end()) {
+             it->second--;
+             if (!it->second) {
+                m.erase(ransom[i]);
+             }
+         } else {
+             return false;
+         }
+    }
+    
+    return true;
+}
 
 int main()
 {
