@@ -1,0 +1,2 @@
+#tc for graph adj list program: run as:
+g++ -std=c++11 graph_list.cpp && cat tc.txt | ./a.out 
